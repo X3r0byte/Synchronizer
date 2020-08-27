@@ -1,0 +1,40 @@
+﻿<Controls:MetroWindow
+    x:Class="CleanSlate.SubWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="subwindow"
+    Title="SubWindow"
+    Width="407.884"
+    Height="281.703"
+    MouseDown="Subwindow_MouseDown"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="10">
+            <TabItem Header="Information">
+                <Grid>
+                    <TextBlock
+                        x:Name="textBlock"
+                        Margin="10,10,10,27"
+                        FontSize="16"
+                        TextWrapping="Wrap"><Run Text="A clean slate to begin again."/><LineBreak/><LineBreak/><Run Text="Theme credit and usage: "/><Run Text=" "/><InlineUIContainer>
+                            <TextBlock Height="21" UseLayoutRounding="True" Width="125" d:DesignUseLayoutRounding="True"><Hyperlink NavigateUri="https://mahapps.com/"><Run Text="mahapps.metro"/></Hyperlink></TextBlock>
+                        </InlineUIContainer><LineBreak/><Run Text="Extended UI: "/><Hyperlink NavigateUri="https://www.syncfusion.com/"><Run Text="SyncFusion"/></Hyperlink><LineBreak/><Run Text="Author: "/><Run Text=" "/><InlineUIContainer>
+                            <TextBlock Width="125" Height="21"><Hyperlink NavigateUri="https://github.com/X3r0byte" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="X3r0byte" /></Hyperlink></TextBlock>
+                        </InlineUIContainer><LineBreak/></TextBlock>
+                    <Button
+                        x:Name="btncool"
+                        Width="75"
+                        Height="27"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Click="Btncool_Click"
+                        Content="Cool!" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>

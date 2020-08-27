@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CleanSlate.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pro</Value>
+    </Setting>
+    <Setting Name="MainWindowHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="MainWindowWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">700</Value>
+    </Setting>
+    <Setting Name="RootDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/Users/Public/</Value>
+    </Setting>
+    <Setting Name="LocalConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Enter local connection string</Value>
+    </Setting>
+    <Setting Name="ServerConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Enter server connection string</Value>
+    </Setting>
+    <Setting Name="LocalDBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">local</Value>
+    </Setting>
+    <Setting Name="ServerDBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SDECopyII</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,193 @@
+﻿<Controls:MetroWindow
+    x:Class="CleanSlate.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:Custom="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation/toolbox"
+    xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CleanSlate"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+    xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    x:Name="mainwindow"
+    Title="Synchronizer"
+    Width="1022.574"
+    Height="692.216"
+    MouseDown="Mainwindow_MouseDown"
+    SizeChanged="Mainwindow_SizeChanged"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary />
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <Controls:MetroProgressBar
+            x:Name="loader"
+            Height="5"
+            Margin="10,0"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            EllipseDiameter="10"
+            EllipseOffset="9"
+            Foreground="#CC0097FF"
+            IsIndeterminate="False"
+            Opacity="0.75" />
+        <Menu
+            Height="29"
+            Margin="5,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem
+                    x:Name="menunew"
+                    Click="menunew_Click"
+                    Header="New" />
+                <MenuItem
+                    x:Name="menusave"
+                    Click="menusave_Click"
+                    Header="Save" />
+                <!--<MenuItem x:Name="menusaveas" Header="Save As" Click="menusaveas_Click" />-->
+                <MenuItem
+                    x:Name="menuopen"
+                    Click="menuopen_Click"
+                    Header="Open" />
+            </MenuItem>
+            <MenuItem Header="Settings">
+                <MenuItem Header="Theme">
+                    <RadioButton
+                        x:Name="rdo_dark"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Dark" />
+                    <RadioButton
+                        x:Name="rdo_light"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Light" />
+                    <RadioButton
+                        x:Name="rdo_pro"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Pro" />
+                    <RadioButton
+                        x:Name="rdo_slate"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Slate" />
+                    <RadioButton
+                        x:Name="rdo_drab"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Drab" />
+                    <RadioButton
+                        x:Name="rdo_lavender"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Lavender" />
+                    <RadioButton
+                        x:Name="rdo_crimson"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Crimson" />
+                    <RadioButton
+                        x:Name="rdo_construction"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Construction" />
+                    <RadioButton
+                        x:Name="rdo_bubblegum"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Bubblegum" />
+                    <RadioButton
+                        x:Name="rdo_cherry"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="SetTheme_Click"
+                        Content="Formula" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="About">
+                <MenuItem Click="menuinformation_Click" Header="Info" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <TabControl x:Name="tabControl" Margin="10,37,10,10">
+                <TabItem Header="Sync">
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Background="#FFE5E5E5">
+                            <Grid MaxHeight="400">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Label>Local Connection</Label>
+                                    <TextBox x:Name="txtLocalConnectionString">Enter local connection string</TextBox>
+                                    <TextBox x:Name="txtSearchLocal" TextChanged="txtSearchLocal_TextChanged" />
+                                    <ListBox
+                                        x:Name="listLocalTables"
+                                        Height="300"
+                                        ItemsSource="{Binding LocalTables}"
+                                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                        SelectionChanged="listLocalTables_SelectionChanged" />
+                                </StackPanel>
+                                <GridSplitter
+                                    Grid.Column="1"
+                                    Width="5"
+                                    HorizontalAlignment="Stretch" />
+                                <StackPanel Grid.Column="2">
+                                    <Label>Server Connection</Label>
+                                    <TextBox x:Name="txtServerConnectionString">Enter server connection string</TextBox>
+                                    <TextBox x:Name="txtSearchServer" TextChanged="txtSearchServer_TextChanged" />
+                                    <ListBox
+                                        x:Name="listServerTables"
+                                        Height="300"
+                                        ItemsSource="{Binding ServerTables}"
+                                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                        SelectionChanged="listServerTables_SelectionChanged" />
+                                </StackPanel>
+                            </Grid>
+                            <Button x:Name="btnInit" Click="btnInit_Click">CONNECT</Button>
+                            <Button x:Name="btnRefresh" Click="btnRefresh_Click">REFRESH</Button>
+                            <Button x:Name="btnSync" Click="btnSync_Click">SYNC DATA</Button>
+                            <Button x:Name="btnDesync" Click="btnDesync_Click">DESYNC DATA</Button>
+                            <Button x:Name="btnImport" Click="btnImport_Click">IMPORT FROM SERVER</Button>
+                            <Button x:Name="btnRemove" Click="btnRemove_Click">REMOVE FROM LOCAL</Button>
+
+                        </StackPanel>
+                        <GridSplitter
+                            Grid.Column="1"
+                            Width="5"
+                            HorizontalAlignment="Stretch" />
+                        <DataGrid x:Name="dgTableData" Grid.Column="2" />
+                    </Grid>
+                </TabItem>
+                <!--<TabItem Header="Other">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>-->
+            </TabControl>
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>
