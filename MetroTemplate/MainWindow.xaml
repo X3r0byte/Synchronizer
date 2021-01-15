@@ -151,7 +151,8 @@
                                         Height="300"
                                         ItemsSource="{Binding LocalTables}"
                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                        SelectionChanged="listLocalTables_SelectionChanged" />
+                                        SelectionChanged="listLocalTables_SelectionChanged"
+                                        SelectionMode="Extended" />
                                 </StackPanel>
                                 <GridSplitter
                                     Grid.Column="1"
@@ -166,7 +167,8 @@
                                         Height="300"
                                         ItemsSource="{Binding ServerTables}"
                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                        SelectionChanged="listServerTables_SelectionChanged" />
+                                        SelectionChanged="listServerTables_SelectionChanged"
+                                        SelectionMode="Extended" />
                                 </StackPanel>
                             </Grid>
                             <Button x:Name="btnInit" Click="btnInit_Click">CONNECT</Button>

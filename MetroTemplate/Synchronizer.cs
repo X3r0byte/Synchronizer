@@ -156,7 +156,7 @@ namespace CleanSlate
 						clientProvision.ObjectPrefix = trackingPrefix;
 
 						main.context.LocalTables = FetchLocalTables( @"C:\USERS\PUBLIC\LOCAL.MDF");
-						main.context.ServerTables = FetchServerTables("SDECopyII");
+						main.context.ServerTables = FetchServerTables(remotedb);
 
 						// list of [table, primarykey] to track. The application will automatically
 						// create a new local table and sync it to server if it does not exist locally

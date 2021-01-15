@@ -1,14 +1,17 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.SqlServer.Management.Smo;
 using Microsoft.Win32;
 using Syncfusion.UI.Xaml.Spreadsheet.Helpers;
 using Syncfusion.XlsIO.Implementation;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -139,45 +142,60 @@ namespace CleanSlate
             }
         }
 
-        private async void btnImport_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var table = (SyncTable)listServerTables.SelectedItem;
-                string sql = $"SELECT * FROM {table.name}";
-                var data = Synchronizer.GetData(sql, Synchronizer.serverConnectionString);
+		private async void btnImport_Click(object sender, RoutedEventArgs e)
+		{
 
-                context.LocalTables.Add(table);
+			foreach (var item in listServerTables.SelectedItems)
+			{
+				try
+				{
+					var table = (SyncTable)item;
+					string sql = $"SELECT * FROM {table.name}";
+					var data = Synchronizer.GetData(sql, Synchronizer.serverConnectionString);
+
+					context.LocalTables.Add(table);
+				}
+				catch (Exception ex) 
+                {
+                    await this.ShowMessageAsync($"Sync failure: ", ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
 
+			Loading(true);
+			await Synchronizer.SyncAsync();
+			Loading(false);
+
+			Refresh();
+		}
+
+
+		private async void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var tablesToRemove = new List<SyncTable>();
+
+            foreach (var item in listLocalTables.SelectedItems)
+            {
+                try
+                {
+                    var table = (SyncTable)item;
+                    string sql = $"SELECT * FROM {table.name}";
+                    var data = Synchronizer.GetData(sql, Synchronizer.clientConnectionString);
+
+                    Synchronizer.ClearSingleTableData(table.name);
+                    tablesToRemove.Add(table);
+                    // context.LocalTables.Remove(table);
+                }
+                catch (Exception ex)
+                {
+                    await this.ShowMessageAsync($"Removal failure: ", ex.Message);
+                }
             }
 
-            Loading(true);
-            await Synchronizer.SyncAsync();
-            Loading(false);
-
-            Refresh();
-        }
-
-
-        private async void btnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var table = (SyncTable)listLocalTables.SelectedItem;
-                string sql = $"SELECT * FROM {table.name}";
-                var data = Synchronizer.GetData(sql, Synchronizer.clientConnectionString);
-
-
-                Synchronizer.ClearSingleTableData(table.name);
+            foreach(var table in tablesToRemove)
+			{
                 context.LocalTables.Remove(table);
-            }
-            catch (Exception ex)
-            {
+			}
 
-            }
 
             Loading(true);
             await Synchronizer.SyncAsync();
