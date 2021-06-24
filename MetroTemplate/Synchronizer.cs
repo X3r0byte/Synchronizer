@@ -155,7 +155,7 @@ namespace CleanSlate
 						serverProvision.ObjectPrefix = trackingPrefix;
 						clientProvision.ObjectPrefix = trackingPrefix;
 
-						main.context.LocalTables = FetchLocalTables( @"C:\USERS\PUBLIC\LOCAL.MDF");
+						main.context.LocalTables = FetchLocalTables(clientdb);
 						main.context.ServerTables = FetchServerTables(remotedb);
 
 						// list of [table, primarykey] to track. The application will automatically
@@ -502,7 +502,7 @@ namespace CleanSlate
 				var tables = new ObservableCollection<SyncTable>();
 
 				// get the remote database by name
-				Database database = server.Databases[dbName];
+				Database database = server.Databases[0];
 
 				foreach (Table table in database.Tables)
 				{

@@ -24,10 +24,10 @@
       <Value Profile="(Default)">Enter server connection string</Value>
     </Setting>
     <Setting Name="LocalDBName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">local</Value>
+      <Value Profile="(Default)">Plotify3</Value>
     </Setting>
     <Setting Name="ServerDBName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SDECopyII</Value>
+      <Value Profile="(Default)">SDE</Value>
     </Setting>
   </Settings>
 </SettingsFile>
